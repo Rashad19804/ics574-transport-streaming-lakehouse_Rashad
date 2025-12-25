@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+  - name: Postgres-Lakehouse
+    type: postgres
+    access: proxy
+    url: postgres:5432
+    database: lakehouse
+    user: lakehouse
+    secureJsonData:
+      password: lakehouse
+    jsonData:
+      sslmode: disable
+      postgresVersion: 1600
+      timescaledb: false

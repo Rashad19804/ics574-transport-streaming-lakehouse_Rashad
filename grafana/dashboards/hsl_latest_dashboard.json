@@ -1,0 +1,51 @@
+{
+  "title": "HSL Live (Latest)",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Vehicles (rows in latest)",
+      "datasource": {
+        "type": "postgres",
+        "name": "Postgres-Lakehouse"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT COUNT(*) AS vehicles FROM vehicle_positions_latest;",
+          "datasource": {
+            "type": "postgres",
+            "name": "Postgres-Lakehouse"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "vehicles",
+          "values": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    }
+  ]
+}
